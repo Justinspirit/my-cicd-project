@@ -1,4 +1,4 @@
-name: My First CI Pipeline
+name: Python CI Pipeline
 
 on:
   push:
@@ -11,8 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get the code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show success message
-        run: echo "My first CI/CD pipeline works!"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run automated tests
+        run: python -m unittest -v
